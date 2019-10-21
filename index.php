@@ -1,79 +1,65 @@
 <?php
+//echo phpinfo();
+//exit;
+use simplehtmldom_1_5\simple_html_dom;
+use function simplehtmldom_1_5\str_get_html;
 
+require_once 'vendor/autoload.php';
+$db = new Db(
+    "127.0.0.1",
+    "3306",
+    "first",
+    "root",
+    ""
+);
 require_once 'phpQuery/phpQuery/phpQuery.php';
+require_once 'curl/curl.php';
+require_once 'Simple/simple/simple_html_dom.php';
 header('Content-type: text/html; charset=utf-8');
 
 function print_arr($arr) {
     echo '<pre>' . print_r($arr, true) . '</pre>';
 }
-
-function get_content($url) {
-    $ch = curl_init($url);
+function get_content($curl) {
+    $ch = curl_init($curl);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $res = curl_exec($ch);
     curl_close($ch);
-return $res;
-
+    return $res;
 }
 
-function parser($url, $start, $end) {
-    if($start < $end) {
-        // $file = file_get_contents($url);
-        $file = get_content($url);
-        $doc = phpQuery::newDocument($file);
-        foreach ($doc->find('.page .media') as $article) {
-            $article = pq($article);
-            $article->find('.stacking-badge')->remove(); //удаляет лишнее
-            $article->find('.badge')->remove();
-            $img = $article->find('.media-object img')->attr('src'); //выводит лого
-            $text = $article->find('.media-body')->html();    //вывод название магазина + купоны и бонусы (с помощью remove удаляем лишнее)
-            //echo json_encode($img), "\n";
-            //echo json_encode($text, JSON_HEX_TAG), "\n";
+$curl = new Curl();
+$query = '';
+$response = $curl->get('https://www.coupons.com/store-loyalty-card-coupons/' . $query);
+//С помощью DOM выкачиваем код
+//var_dump($response->body);
+$dom = get_content($response);
+$doc= phpQuery::newDocument($response->body);
+//////////////////////////////////////////////////////////////////////////////
 
-            echo "<img src='$img'>";
-            echo $text;
-            echo '<hr>';
-        }
-
-
-//        $current = $doc->find('.hidden .')->next()->attr(href);
-//        if (!empty($next)) {
-//           $start++;
-//            parser($next, $start, $end);
-//        }
+/////////////////////////////////////////////////////////////////////////////
+$products = $doc->find('.store-pod');
+foreach($products as $product) {
+    $pq = pq($products);
+    $pq ->find('.store-cp-savings')->remove();
+    $text = $pq->find('.store-browse')->html();
+    $url = $pq->attr('href');
     }
-}
-$url = 'https://www.coupons.com/store-loyalty-card-coupons/acme-coupons/';
-$start = 0;
-$end = 3;
-parser($url, $start, $end);
 
-//$ch = curl_init();
-//curl_setopt($ch, CURLOPT_URL, $url);
-////curl_setopt($ch, CURLOPT_HEADER, true);
-//curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-////curl_setopt($ch, CURLOPT_NOBODY, true);
-//curl_exec($ch);
-//curl_close($ch);
+    echo $text;
+    echo '<hr>';
+    echo $url;
+    echo '<hr>';
 
-// весь блок для записи в файл
-//    $fp = fopen("file.txt", "w");
-//    $ch = curl_init($url);
-//    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-//    curl_setopt($ch, CURLOPT_FILE, $fp);
-//    $res = curl_exec($ch);
-//    curl_close($ch);
-//    var_dump($res);
-
-
-//$ch = curl_init($url);
-//curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-//curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-//$res = curl_exec($ch);
-//curl_close($ch);
-
+//    $urls = preg_match_all('|<a href="(.*?)">|uis', $response, $result);
+//    $urls = $pq->find('.other-stores .store-pod')->html('$urls');
+//    for($i=0; $i<$urls; $i++){
+//     echo $result[1][$i].'<hr>';
+//    }
 
 
 
 ?>
+
+
