@@ -1,0 +1,97 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "f6cf378cc0f5c567bdc10d0612d2c982",
+    "packages": [
+        {
+            "name": "lincanbin/php-pdo-mysql-class",
+            "version": "v2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lincanbin/PHP-PDO-MySQL-Class.git",
+                "reference": "0e61a494ca0d2b044d2ae1137e18cc13b05d87ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lincanbin/PHP-PDO-MySQL-Class/zipball/0e61a494ca0d2b044d2ae1137e18cc13b05d87ba",
+                "reference": "0e61a494ca0d2b044d2ae1137e18cc13b05d87ba",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pdo": "*",
+                "ext-pdo_mysql": "*",
+                "php": ">=5.3.6"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/PDO.class.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "lincanbin",
+                    "email": "lincanbin@hotmail.com"
+                }
+            ],
+            "description": "A PHP MySQL PDO class similar to the the Python MySQLdb, which supports iterator and parameter binding when using 'WHERE IN' statement.",
+            "keywords": [
+                "database",
+                "iterator",
+                "mysql",
+                "pdo"
+            ],
+            "time": "2019-01-28T06:57:37+00:00"
+        },
+        {
+            "name": "phpquery/phpquery",
+            "version": "0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elboza/PhpQuery.git",
+                "reference": "9556e6d903b89796491caee53baac426c9850159"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/elboza/PhpQuery/zipball/9556e6d903b89796491caee53baac426c9850159",
+                "reference": "9556e6d903b89796491caee53baac426c9850159",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpQuery\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Beerware"
+            ],
+            "authors": [
+                {
+                    "name": "Fernando Iazeolla",
+                    "email": "fernando.iazeolla@gmail.com"
+                }
+            ],
+            "description": "jquery for php",
+            "time": "2019-08-08T19:13:26+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "ext-curl": "*"
+    },
+    "platform-dev": []
+}

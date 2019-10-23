@@ -1,0 +1,7 @@
+{
+    "require": {
+        "lincanbin/php-pdo-mysql-class": "^2.0",
+      "ext-curl": "*",
+        "phpquery/phpquery": "^0.0.2"
+    }
+}
