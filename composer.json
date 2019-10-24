@@ -2,6 +2,7 @@
     "require": {
         "lincanbin/php-pdo-mysql-class": "^2.0",
       "ext-curl": "*",
-        "phpquery/phpquery": "^0.0.2"
+        "phpquery/phpquery": "^0.0.2",
+        "vlucas/phpdotenv": "^3.6"
     }
 }
